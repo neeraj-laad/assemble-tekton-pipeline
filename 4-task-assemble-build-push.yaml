@@ -9,7 +9,7 @@ spec:
         type: git
     params:
       - name: baseImage
-        default: docker.io/<INSERT>/java-microprofile  # insert your dockerhub id
+        default: docker.io/<INSERT>/java-microprofile  # insert your dockerhub id, java-microprofile is the name of the base image  built by enterprise architect
       - name: pathToDockerFile
         default: /workspace/src-repo/Dockerfile
       - name: pathToContext

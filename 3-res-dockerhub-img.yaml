@@ -6,4 +6,4 @@ spec:
   type: image
   params:
     - name: url
-      value: docker.io/<INSERT>/java-microprofile-ping  # insert your dockerhub id
+      value: docker.io/<INSERT>/java-microprofile-ping  # insert your dockerhub id, java-microprifile-ping is the name of the image we want to build with this pipeline

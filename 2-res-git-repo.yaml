@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: url
-      value: https://github.com/<INSERT>/java-ping # insert your github id
+      value: https://github.com/<INSERT>/java-ping # insert your github id, java-ping is the repo for user application
     - name: revision
       value: master
