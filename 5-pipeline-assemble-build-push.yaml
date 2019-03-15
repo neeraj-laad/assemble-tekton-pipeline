@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: assemble-build-push-pipeline
+spec:
+  resources:
+    - name: src-repo
+      type: git
+    - name: assemble-app-img
+      type: image
+  tasks:
+    - name: assemble-build-push
+      taskRef:
+        name: assemble-build-push-task
+      resources:
+        inputs:
+          - name: src-repo
+            resource: src-repo
+        outputs:
+          - name: assemble-app-img
+            resource: assemble-app-img

@@ -1,0 +1,37 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: assemble-build-push-task
+spec:
+  inputs:
+    resources:
+      - name: src-repo
+        type: git
+    params:
+      - name: baseImage
+        default: docker.io/<INSERT>/java-microprofile  # insert your dockerhub id
+      - name: pathToDockerFile
+        default: /workspace/src-repo/Dockerfile
+      - name: pathToContext
+        default: /workspace/src-repo/
+  outputs:
+    resources:
+      - name: assemble-app-img
+        type: image
+  steps:
+    - name: assemble-step
+      image: ${inputs.params.baseImage}
+      command:
+        - cp
+      args:
+        - -a
+        - /app/.
+        - /workspace/src-repo/
+    - name: build-push-step
+      image: gcr.io/kaniko-project/executor
+      command:
+        - /kaniko/executor
+      args:
+        - --dockerfile=${inputs.params.pathToDockerFile}
+        - --destination=${outputs.resources.assemble-app-img.url}
+        - --context=${inputs.params.pathToContext}

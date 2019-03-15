@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: assemble-app-img
+spec:
+  type: image
+  params:
+    - name: url
+      value: docker.io/<INSERT>/java-microprofile-ping  # insert your dockerhub id

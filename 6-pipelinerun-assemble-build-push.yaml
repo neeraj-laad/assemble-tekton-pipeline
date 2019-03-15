@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: assemble-build-push-pipelinerun
+spec:
+  serviceAccount: dockerhub-account
+  pipelineRef:
+    name: assemble-build-push-pipeline
+  trigger:
+    type: manual
+  resources:
+    - name: src-repo
+      resourceRef:
+        name: src-repo
+    - name: assemble-app-img
+      resourceRef:
+        name: assemble-app-img
